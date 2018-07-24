@@ -4,7 +4,15 @@ This package is meant to allow controlling [NetLogo](http://ccl.northwestern.edu
 
 **Warning:** This is very much a work in progress and almost comically raw. It's also been on the backburner for a little while. Still, issues and pull requests are most welcome. If there is interest in the community, we might turn this into something useful...
 
-# TODO
+## Installation
+
+This package is not registered, but you can still install it by running:
+
+```julia
+Pkg.clone("git@github.com:nicolaspayette/NetLogo.jl.git")
+```
+
+## TODO
 
 The first goal should be, for now, feature parity with [RNetLogo](https://cran.r-project.org/web/packages/RNetLogo/index.html), the [NetLogo Mathematica link](https://ccl.northwestern.edu/netlogo/docs/mathematica.html), and [pyNetLogo](https://github.com/quaquel/pyNetLogo), with the limitation that, at first, only 2d headless workspaces will be supported (i.e., no GUI, no 3d).
 
