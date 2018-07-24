@@ -2,9 +2,9 @@ module NetLogo
 
 using JavaCall
 
-typealias JDouble  JavaObject{Symbol("java.lang.Double")}
-typealias LogoList JavaObject{Symbol("org.nlogo.core.LogoList")}
-typealias Agent    JavaObject{Symbol("org.nlogo.api.Agent")}
+const JDouble  = JavaObject{Symbol("java.lang.Double")}
+const LogoList = JavaObject{Symbol("org.nlogo.core.LogoList")}
+const Agent    = JavaObject{Symbol("org.nlogo.api.Agent")}
 
 export JDouble, LogoList, Agent
 
@@ -20,7 +20,7 @@ function init(nlpath)
 end
 
 function companion{T}(t::Type{JavaCall.JavaObject{T}})
-  typealias O JavaObject{Symbol(string(T) * "\$")}
+  const O = JavaObject{Symbol(string(T) * "\$")}
   jfield(O, "MODULE\$", O)
 end
 
@@ -82,8 +82,8 @@ UndefinedVariableError(jvariable::JString) = UndefinedVariableError(JavaCall.uns
 Base.showerror(io::IO, e::UndefinedVariableError) = print(io, "Nothing named $(e.variable) has been defined.");
 
 function indexofvariable(a::Agent, variable::String)
-  typealias W JavaObject{Symbol("org.nlogo.agent.World")}
-  typealias A JavaObject{Symbol("org.nlogo.agent.Agent")}
+  const W = JavaObject{Symbol("org.nlogo.agent.World")}
+  const A = JavaObject{Symbol("org.nlogo.agent.Agent")}
   agent = convert(A, a)
   world = jcall(agent, "world", W, ())
   jvariable = JString(uppercase(variable)) # TODO: uppercase conversion should be done on JVM side to be safe
