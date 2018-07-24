@@ -32,6 +32,22 @@ report(w, source) = unpack(jcall(w, "report", JObject, (JString,), source))
 open(w, modelname) = jcall(w, "open", Void, (JString,), modelname)
 dispose(w) = jcall(w, "dispose", Void, ())
 
+function withworkspace(f)
+  w = newWorkspace()
+  try
+    f(w)
+  finally
+    dispose(w)
+  end
+end
+
+function withmodel(f, modelname)
+  withworkspace() do w
+    open(w, modelname)
+    f(w)
+  end
+end
+
 function unpack(o::JavaObject)
   realclass = ccall(JavaCall.jnifunc.GetObjectClass, Ptr{Void},
     (Ptr{JavaCall.JNIEnv}, Ptr{Void}), JavaCall.penv, o.ptr)
