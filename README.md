@@ -6,11 +6,13 @@ This package is meant to allow controlling [NetLogo](http://ccl.northwestern.edu
 
 ## Installation
 
-This package is not registered, but you can still install it by running:
+This package is not registered, but you can still install it at the Julia prompt by running:
 
 ```julia
 Pkg.clone("git@github.com:nicolaspayette/NetLogo.jl.git")
 ```
+
+It requires Julia 0.6.x.
 
 ## TODO
 
